@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    //변수 설정
+    var a, count = 0, calc, num,temp;
+    /*
+    input reset '숫자지정' 버튼 클릭시 실행되는 함수
+    calc 변수에 임의랜덤값 지정
+    num 변수의 경우 숫자형으로 변환
+    숫자지정 버튼 클릭시 기존에 찾은회수를 0으로초기화
+    */
+    function calc_b(){
+      calc = Math.random()*100;
+      num = parseInt(calc);
+      count=0;
+    }
+    /*
+    input button '찾기' 버튼 클릭시 실행되는 함수
+    temp 변수의 숫자입력의 값 대입
+    a변수의경우 temp의 숫자형으로 변환
+    입력결과 input의 숫자입력의 값보다 크다작다를 비교하는 내용 값입력
+    찾기 버튼 클릭시마다 count 1씩증가
+    */
+    function calc_c(){
+      temp=document.getElementById('x').value;
+      a=parseInt(temp);
+      if(a>num){
+        document.getElementById('result').value='입력된 값이 큽니다'
+      }else if(a<num){
+        document.getElementById('result').value = '입력된 값이 작습니다'
+      }else{
+        document.getElementById('result').value='축하합니다'
+      }
+      count+=1;
+      document.getElementById('calc').value=count;
+    }
+  </script>
+  <h2>숫자 맞추기</h2>
+  <form>
+  숫자입력 : <input id="x"><br>
+  입력결과 : <input id="result"><br>
+  반복횟수 : <input id="calc"><br>
+
+  <input type="reset" value="숫자 지정" onclick="calc_b();">
+  <input type="button" value="찾기" onclick="calc_c();">
+</form>
+</body>
+</html>
