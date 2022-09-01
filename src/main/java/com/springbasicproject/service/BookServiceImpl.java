@@ -1,7 +1,7 @@
 package com.springbasicproject.service;
 
 import com.springbasicproject.domain.Book;
-import com.springbasicproject.repository.BookRepository;
+import com.springbasicproject.repository.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,28 +10,27 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService{
 
-    private final BookRepository bookRepository;
+    private final BookDao bookDao;
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookServiceImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
     }
 
 
     @Override
     public void save(Book book) {
-        System.out.println("서비스"+book.getSubject());
-        bookRepository.save(book);
+        bookDao.save(book);
     }
 
     @Override
     public Book findBook(Long idx) {
-        return bookRepository.findByIdx(idx);
+        return bookDao.findByIdx(idx);
     }
 
     @Override
     public List<Book> getBookList() {
-        List<Book> bookList = bookRepository.getBookList();
+        List<Book> bookList = bookDao.getBookList();
 
         return bookList;
     }
