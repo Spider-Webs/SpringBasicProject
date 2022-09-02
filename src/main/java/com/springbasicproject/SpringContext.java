@@ -6,22 +6,21 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
+@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.springbasicproject")
 @PropertySource("classpath:/config/db.properties")
-public class BeanConfigClass implements WebMvcConfigurer{
+public class SpringContext implements WebMvcConfigurer{
 
     @Value("${spring.datasource.url}")
     private String dbUrl;
@@ -30,18 +29,21 @@ public class BeanConfigClass implements WebMvcConfigurer{
     @Value("${spring.datasource.password}")
     private String dbPassword;
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
-    @Bean
-    public MessageSource message(){
-        ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
-        ms.setBasenames("db");
-        ms.setDefaultEncoding("UTF-8");
-        return ms;
-    }
+//    // Controller의 메서드가 반환하는 jsp의 이름 앞뒤에 경로와 확장자를 붙혀주도록 설정한다.
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        // TODO Auto-generated method stub
+//        WebMvcConfigurer.super.configureViewResolvers(registry);
+//        registry.jsp("/WEB-INF/views/", ".jsp");
+//    }
+//
+//    // 정적 파일의 경로를 매핑한다.
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        // TODO Auto-generated method stub
+//        WebMvcConfigurer.super.addResourceHandlers(registry);
+//        registry.addResourceHandler("/**").addResourceLocations("/resources/");
+//    }
 
     @Bean
     public BasicDataSource dataSource() {

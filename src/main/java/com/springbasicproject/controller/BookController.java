@@ -31,7 +31,7 @@ public class BookController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createPost(@ModelAttribute Book book){
 
-        System.out.println("con"+book.getPrice());
+
         bookService.save(book);
 
         return "book/createSuccess";
@@ -41,7 +41,6 @@ public class BookController {
     public String detail(@RequestParam Long idx, Model model){
 
         Book book = bookService.findBook(idx);
-        System.out.println("detail"+book.getIdx());
         model.addAttribute("book", book);
         return "book/detailBook";
     }
