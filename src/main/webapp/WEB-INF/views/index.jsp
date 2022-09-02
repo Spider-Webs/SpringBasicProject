@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello Spring MVC Java</h1>
+	<h1>Book World</h1>
+	<a href="/SpringBasicProject/register/terms">회원가입 하러가기</a>
+	<a href="/SpringBasicProject/create">책 등록하러 가기</a>
+	<a href="/SpringBasicProject/list">책 목록보러 가기</a>
 </body>
 </html>
